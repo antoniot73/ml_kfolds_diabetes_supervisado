@@ -8748,14 +8748,14 @@ $$</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>2026-07-05 22:43:15,131 | INFO | Dataset cargado correctamente desde data\diabetes.csv
+<pre>2026-07-05 23:14:30,874 | INFO | Dataset cargado correctamente desde data\diabetes.csv
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>2026-07-05 22:43:15,131 | INFO | Validación estructural completada correctamente.
+<pre>2026-07-05 23:14:30,876 | INFO | Validación estructural completada correctamente.
 </pre>
 </div>
 </div>
@@ -18515,14 +18515,14 @@ Vector y: (768,)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>2026-07-05 22:43:15,422 | INFO | Modelos construidos: ['Random Forest', 'SVM Lineal', 'Red Neuronal MLP']
+<pre>2026-07-05 23:14:31,154 | INFO | Modelos construidos: ['Random Forest', 'SVM Lineal', 'Red Neuronal MLP']
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>2026-07-05 22:43:15,422 | INFO | Se encontró caché de predicciones K-Folds: outputs\tablas\predicciones_kfolds_cache.csv
+<pre>2026-07-05 23:14:31,154 | INFO | Se encontró caché de predicciones K-Folds: outputs\tablas\predicciones_kfolds_cache.csv
 </pre>
 </div>
 </div>
@@ -19306,11 +19306,11 @@ Gráfica guardada en: outputs\graficas\importancia_variables_kfolds_random_fores
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="10.-Interpretaci%C3%B3n-de-resultados">10. Interpretación de resultados<a class="anchor-link" href="#10.-Interpretaci%C3%B3n-de-resultados">¶</a></h2><p>La comparación mediante <strong>K-Folds</strong> muestra que los modelos presentan comportamientos distintos ante el mismo problema de clasificación. Aunque las diferencias entre los dos mejores modelos son pequeñas, el análisis de las métricas permite identificar fortalezas específicas.</p>
-<p><strong>SVM Lineal</strong> obtiene la mayor <strong>Precisión Global (0.7747)</strong> y el menor <strong>Error Global (0.2253)</strong>. Además, presenta la mayor <strong>Precisión Negativa (PN = 0.8820)</strong> y la mayor <strong>Asertividad Positiva (AP = 0.7230)</strong>, lo que indica un buen desempeño para reconocer casos negativos y una proporción alta de aciertos entre los casos predichos como positivos.</p>
-<p><strong>Random Forest</strong> obtiene la mayor <strong>Precisión Positiva (PP = 0.7351)</strong> y el menor número de <strong>Falsos Negativos (FN = 71)</strong>. Este resultado es relevante en un problema médico porque reduce el riesgo de clasificar como sano a un paciente con diabetes, aunque incrementa los falsos positivos frente a SVM Lineal.</p>
-<p><strong>Red Neuronal MLP</strong> obtiene el menor desempeño global (<strong>0.7031</strong>) bajo esta configuración. Aunque conserva una precisión positiva aceptable, no supera a SVM Lineal en desempeño general ni a Random Forest en detección de casos positivos.</p>
-<p>En términos prácticos, si se prioriza el desempeño global, <strong>SVM Lineal</strong> resulta la alternativa más conveniente. Si se prioriza reducir falsos negativos y detectar más pacientes positivos, <strong>Random Forest</strong> representa una opción relevante bajo esta configuración K-Folds.</p>
+<h2 id="10.-Interpretaci%C3%B3n-de-resultados">10. Interpretación de resultados<a class="anchor-link" href="#10.-Interpretaci%C3%B3n-de-resultados">¶</a></h2><p>La comparación mediante <strong>K-Folds</strong> muestra que los modelos presentan comportamientos distintos ante el mismo problema de clasificación. Aunque las diferencias entre Random Forest y SVM Lineal son pequeñas, el análisis de las métricas permite identificar fortalezas específicas.</p>
+<p><strong>Random Forest</strong> obtiene la mayor <strong>Precisión Global (0.7552)</strong> y la mayor <strong>Precisión Positiva (PP = 0.7724)</strong>. Además, presenta el menor número de <strong>Falsos Negativos (FN = 61)</strong>, aspecto relevante en un problema médico porque reduce el riesgo de clasificar como sano a un paciente con diabetes.</p>
+<p><strong>SVM Lineal</strong> obtiene un desempeño global cercano (<strong>0.7487</strong>) y presenta menos falsos positivos que Random Forest. Sin embargo, genera más falsos negativos (<strong>FN = 78</strong>), por lo que detecta menos casos positivos reales.</p>
+<p><strong>Red Neuronal MLP</strong> obtiene el menor desempeño global (<strong>0.7031</strong>) bajo esta configuración. Aunque puede modelar relaciones no lineales, no supera a Random Forest ni a SVM Lineal en las métricas principales.</p>
+<p>En términos prácticos, <strong>Random Forest</strong> resulta la alternativa más conveniente bajo esta configuración K-Folds, ya que combina la mejor precisión global, la mayor detección de casos positivos y el menor número de falsos negativos.</p>
 </div>
 </div>
 </div>
@@ -19369,13 +19369,13 @@ Mejor precisión positiva PP: Random Forest (0.7724)
 </li>
 <li><p>K-Folds permitió evaluar los modelos mediante 10 particiones estratificadas. En cada iteración, un fold se reservó para prueba y los folds restantes se usaron para entrenamiento, manteniendo aproximadamente la proporción de clases.</p>
 </li>
-<li><p><strong>SVM Lineal</strong> obtuvo la mejor precisión global (<strong>0.7747</strong>) y el menor error global (<strong>0.2253</strong>), por lo que fue el modelo con mejor desempeño general bajo esta configuración experimental.</p>
+<li><p><strong>Random Forest</strong> obtuvo la mejor precisión global (<strong>0.7552</strong>) y el menor error global (<strong>0.2448</strong>), por lo que fue el modelo con mejor desempeño general bajo esta configuración experimental.</p>
 </li>
-<li><p><strong>Random Forest</strong> obtuvo la mejor precisión positiva (<strong>PP = 0.7351</strong>) y el menor número de falsos negativos (<strong>FN = 71</strong>), aspecto relevante en un problema médico porque reduce el riesgo de no detectar pacientes con diabetes.</p>
+<li><p><strong>Random Forest</strong> también obtuvo la mejor precisión positiva (<strong>PP = 0.7724</strong>) y el menor número de falsos negativos (<strong>FN = 61</strong>), aspecto relevante en un problema médico porque reduce el riesgo de no detectar pacientes con diabetes.</p>
 </li>
-<li><p><strong>Red Neuronal MLP</strong> obtuvo el menor desempeño global entre los tres modelos. Aunque puede modelar relaciones no lineales, en esta configuración compacta no superó a SVM Lineal ni a Random Forest.</p>
+<li><p><strong>SVM Lineal</strong> presentó un desempeño cercano al de Random Forest, con una precisión global de <strong>0.7487</strong>, pero generó más falsos negativos (<strong>FN = 78</strong>).</p>
 </li>
-<li><p>La comparación muestra que no existe un modelo universalmente superior: la selección depende del criterio de éxito. Para desempeño global conviene SVM Lineal; para sensibilidad positiva y reducción de falsos negativos conviene Random Forest.</p>
+<li><p><strong>Red Neuronal MLP</strong> obtuvo el menor desempeño global entre los tres modelos. Aunque puede modelar relaciones no lineales, en esta configuración compacta no superó a Random Forest ni a SVM Lineal.</p>
 </li>
 <li><p>Desde el punto de vista metodológico, el uso de pipelines con escalamiento interno evitó fuga de datos durante K-Folds, fortaleciendo la validez experimental de la práctica.</p>
 </li>

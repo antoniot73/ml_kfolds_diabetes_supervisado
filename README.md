@@ -6,7 +6,7 @@ https://github.com/antoniot73/ml_kfolds_diabetes_supervisado
 **GitHub Pages:** 
 https://antoniot73.github.io/ml_kfolds_diabetes_supervisado/notebooks/practica_kfolds_diabetes_supervisado.html  
 
-**Binder:** 
+**Binder:**
 https://mybinder.org/v2/gh/antoniot73/ml_kfolds_diabetes_supervisado/main?filepath=notebooks/practica_kfolds_diabetes_supervisado.ipynb
 
 ---
