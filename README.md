@@ -1,17 +1,17 @@
 # Análisis, implementación y evaluación de Random Forest, SVM Lineal y Red Neuronal MLP mediante K-Folds para clasificación de diabetes
 
-**Repositorio:** 
+**Repositorio:**  
 https://github.com/antoniot73/ml_kfolds_diabetes_supervisado
 
-**GitHub Pages:** 
-https://antoniot73.github.io/ml_kfolds_diabetes_supervisado/notebooks/practica_kfolds_diabetes_supervisado.html  
+**GitHub Pages:**  
+https://antoniot73.github.io/ml_kfolds_diabetes_supervisado/notebooks/practica_kfolds_diabetes_supervisado.html
 
-**Binder:**
+**Binder:**  
 https://mybinder.org/v2/gh/antoniot73/ml_kfolds_diabetes_supervisado/main?filepath=notebooks/practica_kfolds_diabetes_supervisado.ipynb
 
 ---
 
-## Instituto Internacional de Aguascalientes
+# Instituto Internacional de Aguascalientes
 
 **Maestría en Inteligencia Artificial para la Transformación Digital**  
 **Programa:** Aprendizaje Inteligente  
@@ -20,75 +20,84 @@ https://mybinder.org/v2/gh/antoniot73/ml_kfolds_diabetes_supervisado/main?filepa
 
 ---
 
-## Descripción
+# Descripción
 
-Este repositorio contiene la práctica **“Análisis, implementación y prueba de máquinas de aprendizaje supervisado”**, desarrollada con tres modelos de clasificación supervisada:
+Este repositorio contiene la práctica **"Análisis, implementación y prueba de máquinas de aprendizaje supervisado"**, desarrollada mediante tres algoritmos de clasificación supervisada:
 
-- **Random Forest**
-- **Máquina de Soporte Vectorial Lineal (SVM Lineal)**
-- **Red Neuronal Multicapa (MLP)**
+- Random Forest
+- Máquina de Soporte Vectorial Lineal (SVM Lineal)
+- Red Neuronal Multicapa (MLP)
 
-Los modelos se aplican al mismo problema de clasificación binaria: predecir si un registro corresponde a resultado negativo o positivo de diabetes a partir del dataset **Pima Indians Diabetes Database**.
+Los modelos se aplican al problema de clasificación binaria del dataset **Pima Indians Diabetes Database**, utilizando **Stratified K-Fold Cross-Validation** como técnica de validación para comparar objetivamente su desempeño.
 
-La práctica incluye marco teórico, carga del dataset, validación de datos, exploración visual, preparación de variables, implementación de modelos, evaluación mediante **K-Fold Cross-Validation**, matrices de confusión, comparación de métricas e importancia de variables para Random Forest.
-
----
-
-## Objetivo general
-
-Implementar, evaluar y comparar máquinas de aprendizaje supervisado sobre un dataset de diabetes, utilizando **K-Folds** como técnica de validación y métricas de clasificación solicitadas para la práctica.
+La práctica integra el desarrollo del marco teórico, implementación de modelos, evaluación experimental y análisis comparativo de resultados mediante un pipeline reproducible.
 
 ---
 
-## Objetivos específicos
+# Objetivo general
+
+Implementar, evaluar y comparar modelos de aprendizaje supervisado mediante **Stratified K-Fold Cross-Validation**, analizando su capacidad para clasificar pacientes con diabetes mediante métricas de desempeño ampliamente utilizadas en problemas de clasificación binaria.
+
+---
+
+# Objetivos específicos
 
 - Analizar el funcionamiento de K-Fold Cross-Validation.
+- Comprender el uso de StratifiedKFold.
 - Implementar Random Forest, SVM Lineal y Red Neuronal MLP.
-- Cargar y validar un dataset real de clasificación binaria.
-- Preparar variables predictoras y variable objetivo.
-- Evaluar los modelos bajo la misma estrategia K-Folds.
-- Comparar los resultados mediante precisión global, error global, PP, PN, FP, FN, AP y NP.
-- Generar un reporte HTML reproducible desde el notebook.
+- Validar automáticamente el dataset.
+- Comparar el desempeño de los modelos mediante las métricas solicitadas.
+- Generar tablas y gráficas reproducibles.
+- Exportar automáticamente los resultados.
 
 ---
 
-## Dataset
+# Dataset
 
-**Nombre:** Pima Indians Diabetes Database  
-**Fuente:** https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database  
+**Nombre:** Pima Indians Diabetes Database
 
-El dataset contiene 768 registros, 8 variables predictoras y una variable objetivo binaria.
+**Fuente:** https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database
 
-### Variable objetivo
+El conjunto de datos contiene:
 
-- `Outcome`
-  - `0`: resultado negativo.
-  - `1`: resultado positivo.
+- 768 observaciones
+- 8 variables predictoras
+- 1 variable objetivo binaria
 
-### Variables predictoras utilizadas
+Variable objetivo:
 
-- `Pregnancies`
-- `Glucose`
-- `BloodPressure`
-- `SkinThickness`
-- `Insulin`
-- `BMI`
-- `DiabetesPedigreeFunction`
-- `Age`
+- Outcome = 0 → No diabetes
+- Outcome = 1 → Diabetes
 
----
+Variables predictoras:
 
-## Técnica de validación
-
-La evaluación se realizó mediante **K-Fold Cross-Validation** con `k = 10`.
-
-En cada iteración, un fold se reserva como conjunto de prueba y los folds restantes se utilizan para entrenamiento. En esta práctica se usa `StratifiedKFold` para conservar aproximadamente la proporción de clases en cada partición.
+- Pregnancies
+- Glucose
+- BloodPressure
+- SkinThickness
+- Insulin
+- BMI
+- DiabetesPedigreeFunction
+- Age
 
 ---
 
-## Tecnologías utilizadas
+# Técnica de validación
 
-- Python 3.12+
+La evaluación se realizó mediante **Stratified K-Fold Cross-Validation** con **k = 10**.
+
+En cada iteración:
+
+- un fold se reserva para prueba;
+- los nueve folds restantes se utilizan para entrenamiento.
+
+El uso de **StratifiedKFold** conserva aproximadamente la proporción original de clases en cada partición, obteniendo una estimación más estable del desempeño de los modelos.
+
+---
+
+# Tecnologías utilizadas
+
+- Python 3.12
 - Jupyter Notebook
 - NumPy
 - Pandas
@@ -99,47 +108,48 @@ En cada iteración, un fold se reserva como conjunto de prueba y los folds resta
 
 ---
 
-## Modelos implementados
+# Modelos implementados
 
-### Random Forest
+Se seleccionaron tres algoritmos representativos de distintos enfoques de aprendizaje supervisado.
 
-Random Forest combina múltiples árboles de decisión y genera la predicción final mediante votación mayoritaria. En esta práctica se utiliza por su capacidad para capturar relaciones no lineales en datos tabulares.
+## Random Forest
 
-Componentes utilizados:
+Modelo basado en árboles de decisión que combina múltiples clasificadores mediante votación.
 
-- `RandomForestClassifier`
-- `class_weight="balanced"`
-- importancia de variables
+Componentes:
 
----
-
-### SVM Lineal
-
-La Máquina de Soporte Vectorial Lineal construye una frontera de decisión maximizando el margen entre clases. Debido a que depende de escalas numéricas, se implementa dentro de un pipeline con estandarización.
-
-Componentes utilizados:
-
-- `StandardScaler`
-- `LinearSVC`
-- `Pipeline`
+- RandomForestClassifier
+- class_weight="balanced"
 
 ---
 
-### Red Neuronal MLP
+## SVM Lineal
 
-La Red Neuronal Multicapa es un modelo supervisado no lineal compuesto por capas de neuronas artificiales. En esta práctica se utiliza una arquitectura compacta para clasificación tabular.
+Modelo lineal que maximiza el margen entre clases.
 
-Componentes utilizados:
+Componentes:
 
-- `StandardScaler`
-- `MLPClassifier`
-- `Pipeline`
+- StandardScaler
+- LinearSVC
+- Pipeline
 
 ---
 
-## Evaluación
+## Red Neuronal MLP
 
-Los modelos se comparan con:
+Modelo no lineal compuesto por capas de neuronas artificiales.
+
+Componentes:
+
+- StandardScaler
+- MLPClassifier
+- Pipeline
+
+---
+
+# Evaluación
+
+La comparación utiliza:
 
 - Precisión Global
 - Error Global
@@ -149,29 +159,41 @@ Los modelos se comparan con:
 - Falsos Negativos (FN)
 - Asertividad Positiva (AP)
 - Asertividad Negativa (NP)
-- Matriz de confusión
+- Matriz de Confusión
 
 ---
 
-## Resultados principales
+# Resultados principales
 
 | Modelo | Precisión Global | Error Global | PP | PN | FP | FN | AP | NP |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| SVM Lineal | 0.7747 | 0.2253 | 0.5746 | 0.8820 | 59 | 114 | 0.7230 | 0.7946 |
-| Random Forest | 0.7656 | 0.2344 | 0.7351 | 0.7820 | 109 | 71 | 0.6438 | 0.8463 |
-| Red Neuronal MLP | 0.7031 | 0.2969 | 0.6455 | 0.7340 | 133 | 95 | 0.5654 | 0.7944 |
+| **Random Forest** | **0.7552** | **0.2448** | **0.7724** | **0.7460** | **127** | **61** | **0.6198** | **0.8594** |
+| SVM Lineal | 0.7487 | 0.2513 | 0.7090 | 0.7700 | 115 | 78 | 0.6230 | 0.8315 |
+| Red Neuronal MLP | 0.7031 | 0.2969 | 0.6269 | 0.7440 | 128 | 100 | 0.5676 | 0.7881 |
 
-### Interpretación general
+## Interpretación general
 
-SVM Lineal obtuvo la mejor precisión global y el menor error global. Random Forest obtuvo la mayor precisión positiva y el menor número de falsos negativos, lo que lo hace relevante cuando se busca priorizar la detección de pacientes positivos. La Red Neuronal MLP no superó a los otros modelos bajo esta configuración compacta.
+**Random Forest** obtuvo el mejor desempeño general bajo la estrategia **K-Folds**, alcanzando la mayor precisión global, la mayor precisión positiva y el menor número de falsos negativos. **SVM Lineal** presentó un desempeño cercano, mientras que **Red Neuronal MLP** obtuvo el menor rendimiento bajo la configuración utilizada.
 
 ---
 
-## Archivos generados
+# Resultados del proyecto
 
-El notebook genera salidas en:
+La ejecución automática del pipeline genera:
 
-```text
+- Reporte HTML reproducible.
+- Notebook ejecutable.
+- Predicciones K-Folds.
+- Métricas comparativas.
+- Matrices de confusión.
+- Comparación gráfica de modelos.
+- Importancia de variables para Random Forest.
+
+---
+
+# Archivos generados
+
+```
 outputs/
 ├── graficas/
 └── tablas/
@@ -179,67 +201,38 @@ outputs/
 
 Incluye:
 
-- distribución de clases
-- matriz de confusión Random Forest
-- matriz de confusión SVM Lineal
-- matriz de confusión Red Neuronal MLP
-- comparación de métricas K-Folds
-- importancia de variables Random Forest
-- métricas comparativas en CSV
-- predicciones K-Folds en CSV
+- distribución de clases;
+- matrices de confusión;
+- comparación de métricas;
+- importancia de variables;
+- métricas CSV;
+- predicciones CSV.
 
 ---
 
-## Estructura del repositorio
+# Estructura del repositorio
 
-```text
+```
 ml_kfolds_diabetes_supervisado/
 │
 ├── data/
-│   └── diabetes.csv
-│
 ├── notebooks/
-│   ├── practica_kfolds_diabetes_supervisado.ipynb
-│   └── practica_kfolds_diabetes_supervisado.html
-│
 ├── outputs/
-│   ├── graficas/
-│   │   ├── comparacion_metricas_kfolds.png
-│   │   ├── distribucion_clases_dataset.png
-│   │   ├── importancia_variables_kfolds_random_forest.png
-│   │   ├── matriz_confusion_kfolds_random_forest.png
-│   │   ├── matriz_confusion_kfolds_red_neuronal_mlp.png
-│   │   └── matriz_confusion_kfolds_svm_lineal.png
-│   │
-│   └── tablas/
-│       ├── importancia_variables_random_forest.csv
-│       ├── metricas_kfolds_modelos.csv
-│       └── predicciones_kfolds_cache.csv
-│
 ├── src/
-│   ├── __init__.py
-│   ├── dataset.py
-│   ├── main.py
-│   ├── modeling.py
-│   ├── reporting.py
-│   └── visualization.py
-│
-├── .gitignore
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+└── .gitignore
 ```
 
 ---
 
-## Instalación
-
-Crear entorno virtual:
+# Instalación
 
 ```bash
 python -m venv .venv
 ```
 
-Activar entorno en Windows:
+Windows:
 
 ```bash
 .venv\Scripts\activate
@@ -253,27 +246,19 @@ pip install -r requirements.txt
 
 ---
 
-## Ejecución local
-
-Ejecutar el pipeline modular:
+# Ejecución local
 
 ```bash
 python src/main.py
 ```
 
-Abrir Jupyter:
+Notebook:
 
 ```bash
 jupyter notebook
 ```
 
-Ejecutar:
-
-```bash
-notebooks/practica_kfolds_diabetes_supervisado.ipynb
-```
-
-Generar HTML:
+HTML:
 
 ```bash
 jupyter nbconvert --to html --execute notebooks/practica_kfolds_diabetes_supervisado.ipynb --output practica_kfolds_diabetes_supervisado.html
@@ -281,50 +266,46 @@ jupyter nbconvert --to html --execute notebooks/practica_kfolds_diabetes_supervi
 
 ---
 
-## Ejecución en Binder
-
-Abrir:
+# Ejecución en Binder
 
 https://mybinder.org/v2/gh/antoniot73/ml_kfolds_diabetes_supervisado/main?filepath=notebooks/practica_kfolds_diabetes_supervisado.ipynb
 
 ---
 
-## Publicación en GitHub Pages
-
-El reporte HTML puede consultarse en:
+# GitHub Pages
 
 https://antoniot73.github.io/ml_kfolds_diabetes_supervisado/notebooks/practica_kfolds_diabetes_supervisado.html
 
 ---
 
-## Reproducibilidad
+# Reproducibilidad
 
-La práctica utiliza:
+El proyecto utiliza:
 
-- semilla aleatoria fija
-- K-Folds estratificado
-- validación de columnas
-- revisión de valores faltantes
-- rutas relativas
-- exportación de gráficas y tablas
-- pipelines con escalamiento interno para evitar fuga de datos
+- `random_state = 42`;
+- `StratifiedKFold`;
+- validación automática del dataset;
+- verificación de valores faltantes;
+- rutas relativas;
+- exportación automática de tablas y gráficas;
+- pipelines con escalamiento interno para evitar fuga de datos.
 
-Esto permite ejecutar el proyecto tanto en entorno local como en cloud.
+Estas características permiten reproducir completamente los resultados tanto en entorno local como mediante Binder.
 
 ---
 
-## Referencias
+# Referencias
 
-Géron, A. (2019). *Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow* (2nd ed.). O’Reilly Media.
+Breiman, L. (2001). *Random forests*. Machine Learning, 45(1), 5–32.
+
+Géron, A. (2019). *Hands-on Machine Learning with Scikit-Learn, Keras, and TensorFlow* (2nd ed.). O'Reilly Media.
 
 Gironés Roig, J., Casas Roma, J., Minguillón Alfonso, J., & Caihuelas Quiles, R. (2017). *Minería de datos: modelos y algoritmos*. Editorial UOC.
 
-Hastie, T., Tibshirani, R., & Friedman, J. (2017). *The elements of statistical learning: Data mining, inference, and prediction* (2nd ed.). Springer.
+Hastie, T., Tibshirani, R., & Friedman, J. (2017). *The Elements of Statistical Learning*. Springer.
 
-Raschka, S., & Mirjalili, V. (2019). *Python machine learning* (3rd ed.). Packt Publishing.
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). *An Introduction to Statistical Learning*. Springer.
 
-James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). *An introduction to statistical learning: with applications in R*. Springer New York.
+Raschka, S., & Mirjalili, V. (2019). *Python Machine Learning* (3rd ed.). Packt Publishing.
 
-Breiman, L. (2001). Random forests. *Machine Learning, 45*(1), 5–32. https://doi.org/10.1023/A:1010933404324
-
-UCI Machine Learning. (2016). *Pima Indians diabetes database* [Conjunto de datos]. Kaggle. https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database
+UCI Machine Learning Repository. *Pima Indians Diabetes Database*. Kaggle.
