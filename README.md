@@ -8,6 +8,7 @@ https://antoniot73.github.io/ml_kfolds_diabetes_supervisado/notebooks/practica_k
 
 **Binder:** 
 https://mybinder.org/v2/gh/antoniot73/ml_kfolds_diabetes_supervisado/main?filepath=notebooks/practica_kfolds_diabetes_supervisado.ipynb
+
 ---
 
 ## Instituto Internacional de Aguascalientes
